@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F5D6D2E1-6FFD-402B-8EE3-DED4FE407028}</ProjectGuid>
-    <RootNamespace>00_Sandbox</RootNamespace>
-    <ProjectName>00_Sandbox</ProjectName>
+    <ProjectGuid>{425ED9DA-852E-4F61-BE06-487F68A6187E}</ProjectGuid>
+    <RootNamespace>01_Basics</RootNamespace>
+    <ProjectName>01_Basics</ProjectName>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -156,16 +156,16 @@ xcopy "$(SolutionDir)include\RE\Shaders" "$(SolutionDir)_Binary\Shaders" /y</Com
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AppClass.cpp" />
-    <ClCompile Include="AppClassControls.cpp" />
-    <ClCompile Include="Main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\res\Resource.h" />
     <ClInclude Include="AppClass.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\res\BTO.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AppClass.cpp" />
+    <ClCompile Include="AppClassControls.cpp" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
