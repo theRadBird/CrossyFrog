@@ -29,14 +29,20 @@ void AppClass::ProcessKeyboard(void)
         player->startJump();
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
         m_pCameraMngr->MoveForward(-fSpeed);
+        player->startJump();
+    }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
         m_pCameraMngr->MoveSideways(-fSpeed);
+        player->startSidewaysL();
+    }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
         m_pCameraMngr->MoveSideways(fSpeed);
+        player->startSidewaysR();
+    }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
         m_pCameraMngr->MoveVertical(-fSpeed);

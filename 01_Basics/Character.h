@@ -11,15 +11,25 @@ public:
     Character();
     ~Character();
 
-    void Update(double rt);
+    vector3 Update(double rt);
 
     vector3 position;
-    float duration;
+    float jumpDuration;
     float jumpRunTime;
+    float sidewaysDuration;
+    float sidewaysRunTime;
     bool up;
+    
     vector3 CharLerp(double rt);
+    vector3 CharSideways(double rt);
     void startJump();
+    void startSidewaysR();
+    void startSidewaysL();
     bool jumping;
+    bool sidewaysRight;
+    bool sidewaysLeft;
+
+    float laneIncrement;
 
 };
 

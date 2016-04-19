@@ -55,7 +55,7 @@ void AppClass::Update(void)
     fRunTime += fTimeSpan;
 
     //matrix4 mOrientation = glm::translate(vector3(-1.f, 0.f, 1.f));
-    vector3 playerMove = player->CharLerp(fTimeSpan);
+    vector3 playerMove = player->Update(fTimeSpan);
     matrix4 mOrientationTile1 = glm::translate(vector3(-1.f, 0.f, 1.f));
     matrix4 mOrientationTile2 = glm::translate(vector3(0.f, 0.f, 1.f));
     matrix4 mOrientationTile3 = glm::translate(vector3(1.f, 0.f, 1.f));
