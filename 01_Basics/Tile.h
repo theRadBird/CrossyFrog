@@ -9,6 +9,7 @@ public:
     ~Tile();
 
     void setPosition(int pos);
+    void updatePosition(matrix4 rowMat);
 private:
     matrix4 position;
     bool collidable;

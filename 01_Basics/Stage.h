@@ -3,10 +3,10 @@
 class Stage
 {
 public:
-    Stage();
+    Stage(int rowCount);
     ~Stage();
-    MoveForward();
-    MoveBackward();
+    void MoveForward();
+    void MoveBackward();
 
 private:
     std::vector<StageRow> rowsInStage;
