@@ -24,8 +24,10 @@ void AppClass::ProcessKeyboard(void)
 #pragma region Camera Positioning
     if (bModifier)
         fSpeed *= 10.0f;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
         m_pCameraMngr->MoveForward(fSpeed);
+        player->startJump();
+    }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
         m_pCameraMngr->MoveForward(-fSpeed);

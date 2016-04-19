@@ -6,12 +6,16 @@ Date: 2015/09 (Last Modified on: 15/11)
 #define __APPLICATION_H_
 
 #include "StageRow.h"
+#include "Character.h"
+
 
 using namespace ReEng; //Using ReEng namespace to use all the classes in the dll
 
 class AppClass : public ReEngAppClass
 {
     vector3 m_v3Rotation = vector3(0.0f);
+    Character* player = new Character();
+    double fTimeSpan;
 public:
     typedef ReEngAppClass super;
 

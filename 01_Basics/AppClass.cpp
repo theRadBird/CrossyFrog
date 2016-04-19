@@ -17,7 +17,19 @@ void AppClass::InitVariables(void)
     m_pCameraMngr->SetPositionTargetAndView(vector3(0.0f, 0.0f, 12.0f), vector3(0.0f, 0.0f, 0.0f), REAXISY);
 
     //Load a model onto the Mesh manager
-    m_pMeshMngr->LoadModel("Minecraft\\Steve.obj", "Steve");
+    //m_pMeshMngr->LoadModel("Minecraft\\Steve.obj", "Steve");
+    m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile1");
+    m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile2");
+    m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile3");
+    m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile4");
+    m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile5");
+    m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile6");
+    m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile7");
+    m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile8");
+    m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile9");
+    m_pMeshMngr->LoadModel("Crossy\\character.obj", "character");
+
+    
 }
 
 void AppClass::Update(void)
@@ -36,27 +48,36 @@ void AppClass::Update(void)
     ArcBall();
 
     //Lets us know how much time has passed since the last call
-    double fTimeSpan = m_pSystem->LapClock();
+    fTimeSpan = m_pSystem->LapClock();
 
     //cumulative time
     static double fRunTime = 0.0f;
     fRunTime += fTimeSpan;
 
-    matrix4 mOrientation = glm::rotate(IDENTITY_M4, m_v3Rotation.x, vector3(1.0f, 0.0f, 0.0f));
-    mOrientation = mOrientation * glm::rotate(IDENTITY_M4, m_v3Rotation.y, vector3(0.0f, 1.0f, 0.0f));
-    mOrientation = mOrientation * glm::rotate(IDENTITY_M4, m_v3Rotation.z, vector3(0.0f, 0.0f, 1.0f));
+    //matrix4 mOrientation = glm::translate(vector3(-1.f, 0.f, 1.f));
+    vector3 playerMove = player->CharLerp(fTimeSpan);
+    matrix4 mOrientationTile1 = glm::translate(vector3(-1.f, 0.f, 1.f));
+    matrix4 mOrientationTile2 = glm::translate(vector3(0.f, 0.f, 1.f));
+    matrix4 mOrientationTile3 = glm::translate(vector3(1.f, 0.f, 1.f));
+    matrix4 mOrientationTile4 = glm::translate(vector3(-1.f, 0.f, 0.f));
+    matrix4 mOrientationTile5 = glm::translate(vector3(0.f, 0.f, 0.f));
+    matrix4 mOrientationTile6 = glm::translate(vector3(1.f, 0.f, 0.f));
+    matrix4 mOrientationTile7 = glm::translate(vector3(-1.f, 0.f, -1.f));
+    matrix4 mOrientationTile8 = glm::translate(vector3(0.f, 0.f, -1.f));
+    matrix4 mOrientationTile9 = glm::translate(vector3(1.f, 0.f, -1.f));
 
-    vector3 v3Start(0.0f, 0.0f, 0.0f);
-    vector3 v3End(0.0f, 90.0f, 0.0f);
-    static float fDifference = 0.0f;
-    fDifference += 0.1f;
-    fDifference = MapValue(static_cast<float>(fRunTime), 0.0f, 10.0f, 0.0f, 1.0f);
 
-    float fPosition = glm::lerp(v3Start, v3End, fDifference).y;
-
-    mOrientation = glm::rotate(IDENTITY_M4, fPosition, vector3(0.0f, 1.0f, 0.0f));
-
-    m_pMeshMngr->SetModelMatrix(mOrientation, "Steve");
+    //m_pMeshMngr->SetModelMatrix(mOrientation, "Steve");
+    m_pMeshMngr->SetModelMatrix(glm::translate(playerMove), "character");
+    m_pMeshMngr->SetModelMatrix(mOrientationTile1, "tile1");
+    m_pMeshMngr->SetModelMatrix(mOrientationTile2, "tile2");
+    m_pMeshMngr->SetModelMatrix(mOrientationTile3, "tile3");
+    m_pMeshMngr->SetModelMatrix(mOrientationTile4, "tile4");
+    m_pMeshMngr->SetModelMatrix(mOrientationTile5, "tile5");
+    m_pMeshMngr->SetModelMatrix(mOrientationTile6, "tile6");
+    m_pMeshMngr->SetModelMatrix(mOrientationTile7, "tile7");
+    m_pMeshMngr->SetModelMatrix(mOrientationTile8, "tile8");
+    m_pMeshMngr->SetModelMatrix(mOrientationTile9, "tile9");
 
     //Adds all loaded instance to the render list
     m_pMeshMngr->AddInstanceToRenderList("ALL");

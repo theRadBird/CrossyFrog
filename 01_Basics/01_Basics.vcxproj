@@ -161,6 +161,7 @@ xcopy "$(SolutionDir)include\RE\Shaders" "$(SolutionDir)_Binary\Shaders" /y</Com
     <ClInclude Include="Stage.h" />
     <ClInclude Include="StageRow.h" />
     <ClInclude Include="Tile.h" />
+    <ClInclude Include="Character.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\res\BTO.rc" />
@@ -168,6 +169,7 @@ xcopy "$(SolutionDir)include\RE\Shaders" "$(SolutionDir)_Binary\Shaders" /y</Com
   <ItemGroup>
     <ClCompile Include="AppClass.cpp" />
     <ClCompile Include="AppClassControls.cpp" />
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="StageRow.cpp" />
