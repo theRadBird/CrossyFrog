@@ -5,8 +5,7 @@ Date: 2015/09 (Last Modified on: 15/11)
 #ifndef __APPLICATION_H_
 #define __APPLICATION_H_
 
-#include "RE\ReEngAppClass.h"
-#include <SFML\Graphics.hpp>
+#include "StageRow.h"
 
 using namespace ReEng; //Using ReEng namespace to use all the classes in the dll
 
