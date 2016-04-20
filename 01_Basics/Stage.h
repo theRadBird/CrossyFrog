@@ -9,6 +9,6 @@ public:
     void MoveBackward();
 
 private:
-    std::vector<StageRow> rowsInStage;
+    std::vector<StageRow*> rowsInStage;
 };
 
