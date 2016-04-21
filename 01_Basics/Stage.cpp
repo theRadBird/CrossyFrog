@@ -1,5 +1,12 @@
 #include "Stage.h"
 
+Stage::Stage() {
+    for (int i = 0; i < 3; i++) {
+        rowsInStage.push_back(new StageRow(3));
+        rowsInStage.back()->setPosition(i);
+    }
+}
+
 Stage::Stage(int rowCount)
 {
     for (int i = 0; i < rowCount; i++) {
@@ -10,6 +17,9 @@ Stage::Stage(int rowCount)
 
 Stage::~Stage()
 {
+    for (StageRow* row : rowsInStage) {
+        row->~StageRow();
+    }
 }
 
 void Stage::MoveForward() {

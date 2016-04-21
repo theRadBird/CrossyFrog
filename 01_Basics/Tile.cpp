@@ -20,3 +20,11 @@ void Tile::setPosition(int setPos) {
 void Tile::updatePosition(matrix4 rowMat) {
     position *= rowMat;
 }
+
+void Tile::update(double dt) {
+
+}
+
+void Tile::draw() {
+    
+}

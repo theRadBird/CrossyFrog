@@ -5,7 +5,7 @@ Date: 2015/09 (Last Modified on: 15/11)
 #ifndef __APPLICATION_H_
 #define __APPLICATION_H_
 
-#include "StageRow.h"
+#include "Stage.h"
 #include "Character.h"
 #include "Obstacle.h"
 #include "BoundingObjectManagerSingleton.h"
@@ -17,7 +17,10 @@ class AppClass : public ReEngAppClass
 {
     vector3 m_v3Rotation = vector3(0.0f);
     Character* player = new Character();
+
     Obstacle* obst1 = new Obstacle();
+    Stage worldStage;
+
     double fTimeSpan;
 public:
     typedef ReEngAppClass super;

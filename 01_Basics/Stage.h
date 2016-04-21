@@ -3,6 +3,7 @@
 class Stage
 {
 public:
+    Stage();
     Stage(int rowCount);
     ~Stage();
     void MoveForward();
