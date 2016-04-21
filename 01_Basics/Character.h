@@ -5,6 +5,8 @@
 #include "RE\ReEngAppClass.h"
 #include <SFML\Graphics.hpp>
 
+using namespace ReEng;
+
 class Character
 {
 public:

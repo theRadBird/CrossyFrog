@@ -28,8 +28,10 @@ void AppClass::InitVariables(void)
     m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile8");
     m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile9");
     m_pMeshMngr->LoadModel("Crossy\\character.obj", "character");
+    m_pMeshMngr->LoadModel("Crossy\\obstacle1.obj", "obstacle");
 
-    
+    obst1->setPosition(vector3(0.f, 0.6f, -1.f));
+    obst1->setRadius(0.75f);
 }
 
 void AppClass::Update(void)
@@ -56,6 +58,7 @@ void AppClass::Update(void)
 
     //matrix4 mOrientation = glm::translate(vector3(-1.f, 0.f, 1.f));
     vector3 playerMove = player->Update(fTimeSpan);
+
     matrix4 mOrientationTile1 = glm::translate(vector3(-1.f, 0.f, 1.f));
     matrix4 mOrientationTile2 = glm::translate(vector3(0.f, 0.f, 1.f));
     matrix4 mOrientationTile3 = glm::translate(vector3(1.f, 0.f, 1.f));
@@ -69,6 +72,8 @@ void AppClass::Update(void)
 
     //m_pMeshMngr->SetModelMatrix(mOrientation, "Steve");
     m_pMeshMngr->SetModelMatrix(glm::translate(playerMove), "character");
+    m_pMeshMngr->SetModelMatrix(glm::translate(obst1->getPosition()), "obstacle");
+
     m_pMeshMngr->SetModelMatrix(mOrientationTile1, "tile1");
     m_pMeshMngr->SetModelMatrix(mOrientationTile2, "tile2");
     m_pMeshMngr->SetModelMatrix(mOrientationTile3, "tile3");

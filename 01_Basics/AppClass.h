@@ -7,6 +7,7 @@ Date: 2015/09 (Last Modified on: 15/11)
 
 #include "StageRow.h"
 #include "Character.h"
+#include "Obstacle.h"
 
 
 using namespace ReEng; //Using ReEng namespace to use all the classes in the dll
@@ -15,6 +16,7 @@ class AppClass : public ReEngAppClass
 {
     vector3 m_v3Rotation = vector3(0.0f);
     Character* player = new Character();
+    Obstacle* obst1 = new Obstacle();
     double fTimeSpan;
 public:
     typedef ReEngAppClass super;
