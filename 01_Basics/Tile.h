@@ -10,6 +10,8 @@ public:
 
     void setPosition(int pos);
     void updatePosition(matrix4 rowMat);
+    void update(double dt);
+    void draw();
 private:
     matrix4 position;
     bool collidable;

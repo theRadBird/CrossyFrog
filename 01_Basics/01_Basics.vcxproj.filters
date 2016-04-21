@@ -36,6 +36,9 @@
     <ClInclude Include="Obstacle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BoundingObj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\res\BTO.rc">
@@ -65,6 +68,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Obstacle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BoundingObj.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

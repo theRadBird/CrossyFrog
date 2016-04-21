@@ -6,7 +6,7 @@ void AppClass::InitWindow(String a_sWindowName)
                                // Set the clear color based on Microsoft's CornflowerBlue (default in XNA)
                                //if this line is in Init Application it will depend on the .cfg file, if it
                                //is on the InitVariables it will always force it regardless of the .cfg
-    m_v4ClearColor = vector4(0.4f, 0.6f, 0.9f, 0.0f);
+    m_v4ClearColor = vector4(0.4f, 0.6f, 0.9f, 0.0f); 
 }
 
 void AppClass::InitVariables(void)
@@ -30,8 +30,12 @@ void AppClass::InitVariables(void)
     m_pMeshMngr->LoadModel("Crossy\\character.obj", "character");
     m_pMeshMngr->LoadModel("Crossy\\obstacle1.obj", "obstacle");
 
+
     obst1->setPosition(vector3(0.f, 0.6f, -1.f));
     obst1->setRadius(0.75f);
+
+    worldStage = Stage(3);
+
 }
 
 void AppClass::Update(void)
@@ -69,6 +73,7 @@ void AppClass::Update(void)
     matrix4 mOrientationTile8 = glm::translate(vector3(0.f, 0.f, -1.f));
     matrix4 mOrientationTile9 = glm::translate(vector3(1.f, 0.f, -1.f));
 
+    
 
     //m_pMeshMngr->SetModelMatrix(mOrientation, "Steve");
     m_pMeshMngr->SetModelMatrix(glm::translate(playerMove), "character");

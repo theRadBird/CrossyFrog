@@ -4,14 +4,18 @@
 
 StageRow::StageRow(int amount)
 {
+    int offSet = (amount - 1) / 2;
     for (int i = 0; i < amount; i++) {
         tilesInRow.push_back(new Tile());
-        tilesInRow.back()->setPosition(i);
+        tilesInRow.back()->setPosition(i-offSet);
     }
 }
 
 StageRow::~StageRow()
 {
+    for (Tile* tile : tilesInRow) {
+        tile->~Tile();
+    }
 }
 
 void StageRow::setPosition(int setPos) {
@@ -19,4 +23,16 @@ void StageRow::setPosition(int setPos) {
     for(Tile* tile : tilesInRow) {
         tile->updatePosition(position);
     }
+}
+
+void StageRow::updatePosition(matrix4 stageMat) {
+
+}
+
+void StageRow::update(double dt) {
+
+}
+
+void StageRow::draw() {
+
 }
