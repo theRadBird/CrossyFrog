@@ -26,7 +26,9 @@ Stage::~Stage()
 }
 
 void Stage::MoveForward() {
-
+	for each(StageRow* row in rowsInStage) {
+		row->updatePosition(glm::translate(vector3(0.0f, 0.0f, 1.0f)));
+	}
 }
 
 void Stage::MoveBackward() {

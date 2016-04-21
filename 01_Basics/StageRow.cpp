@@ -19,14 +19,16 @@ StageRow::~StageRow()
 }
 
 void StageRow::setPosition(int setPos) {
-    position = glm::translate(0.0f,0.0f,static_cast<float>(setPos));
+	matrix2World = glm::translate(0.0f,0.0f,static_cast<float>(setPos));
     for(Tile* tile : tilesInRow) {
         tile->updatePosition(position);
     }
 }
 
-void StageRow::updatePosition(matrix4 stageMat) {
-
+void StageRow::updatePosition(vector3 upPosition) {
+	position *= upPosition;
+	matrix2World = position;
+	if()
 }
 
 void StageRow::update(double dt) {

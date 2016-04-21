@@ -7,12 +7,13 @@ public:
     ~StageRow();
     
     void setPosition(int rowPos);
-    void updatePosition(matrix4 stagePos);
+    void updatePosition(vector3 upPosition);
     void update(double dt);
     void draw();
 
 private:
     std::vector<Tile*> tilesInRow;
-    matrix4 position;
+	vector3 position;
+    matrix4 matrix2World;
 };
 
