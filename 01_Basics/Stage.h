@@ -9,6 +9,9 @@ public:
     void MoveForward();
     void MoveBackward();
 
+protected:
+	MeshManagerSingleton* m_pMeshMngr;
+
 private:
     std::vector<StageRow*> rowsInStage;
 };

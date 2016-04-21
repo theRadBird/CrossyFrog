@@ -90,7 +90,7 @@ void AppClass::Update(void)
     m_pMeshMngr->SetModelMatrix(mOrientationTile9, "tile9");
 
     //Adds all loaded instance to the render list
-    m_pMeshMngr->AddInstanceToRenderList("ALL");
+    //m_pMeshMngr->AddInstanceToRenderList("ALL");
 
     //Indicate the FPS
     int nFPS = m_pSystem->GetFPS();

@@ -1,7 +1,8 @@
 #include "Stage.h"
 
 Stage::Stage() {
-    for (int i = 0; i < 3; i++) {
+	m_pMeshMngr = MeshManagerSingleton::GetInstance();
+	for (int i = 0; i < 3; i++) {
         rowsInStage.push_back(new StageRow(3));
         rowsInStage.back()->setPosition(i);
     }
@@ -13,6 +14,8 @@ Stage::Stage(int rowCount)
         rowsInStage.push_back(new StageRow(rowCount));
         rowsInStage.back()->setPosition(i);
     }
+	m_pMeshMngr = MeshManagerSingleton::GetInstance();
+	m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile");
 }
 
 Stage::~Stage()
