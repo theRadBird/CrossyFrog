@@ -1,6 +1,5 @@
 #pragma once
 #include "Tile.h"
-#include "Mover.h"
 
 class StageRow
 {

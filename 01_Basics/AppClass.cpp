@@ -23,6 +23,7 @@ void AppClass::InitVariables(void)
 
     player = new Character();
     obst1 = new Obstacle();
+    mover1 = new Mover();
     
     obst1->setPosition(vector3(0.f, 0.6f, -1.f));
     obst1->setRadius(0.75f);
@@ -59,6 +60,7 @@ void AppClass::Update(void)
     worldStage->update(fTimeSpan);
     
     vector3 playerMove = player->Update(fTimeSpan);
+    mover1->update(fTimeSpan);
 
     m_pMeshMngr->SetModelMatrix(glm::translate(playerMove), "character");
 
