@@ -17,6 +17,7 @@ protected:
 	MeshManagerSingleton* m_pMeshMngr = nullptr;
 private:
     matrix4 position;
+    vector3 pos;
     bool collidable;
     //std::vector<Obstacle> Props;
     

@@ -6,13 +6,16 @@ public:
     StageRow(int amount);
     ~StageRow();
     
-    void setPosition(int rowPos);
-    void updatePosition(matrix4 stagePos);
+    void setPosition(float rowPos);
+    void updatePosition(vector3 moveDir);
     void update(double dt);
+    void updateTiles();
     void draw();
 
 private:
     std::vector<Tile*> tilesInRow;
     matrix4 position;
+    vector3 pos;
+    bool moving;
 };
 

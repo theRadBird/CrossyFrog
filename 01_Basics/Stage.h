@@ -16,5 +16,7 @@ protected:
 
 private:
     std::vector<StageRow*> rowsInStage;
+    bool moveFor, moveBack;
+    float slideTime;
 };
 

@@ -51,8 +51,8 @@ void AppClass::Update(void)
     m_pMeshMngr->Update();
 
     //First person camera movement
-    //if (m_bFPC == true)
-        //CameraRotation();
+    if (m_bFPC == true)
+        CameraRotation();
 
     //Call the arcball method
     ArcBall();
@@ -64,6 +64,8 @@ void AppClass::Update(void)
     static double fRunTime = 0.0f;
     fRunTime += fTimeSpan;
 
+    /// Updates the stage
+    worldStage->update(fTimeSpan);
     //matrix4 mOrientation = glm::translate(vector3(-1.f, 0.f, 1.f));
     vector3 playerMove = player->Update(fTimeSpan);
 
@@ -116,7 +118,7 @@ void AppClass::Display(void)
     switch (m_pCameraMngr->GetCameraMode())
     {
     default: //Perspective
-        m_pMeshMngr->AddGridToQueue(1.0f, REAXIS::XY); //renders the XY grid with a 100% scale
+        m_pMeshMngr->AddGridToQueue(1.0f, REAXIS::XZ); //renders the XY grid with a 100% scale
         break;
     case CAMERAMODE::CAMROTHOX:
         m_pMeshMngr->AddGridToQueue(1.0f, REAXIS::YZ, RERED * 0.75f); //renders the YZ grid with a 100% scale
