@@ -1,10 +1,21 @@
 #include "StageRow.h"
 
-StageRow::StageRow(int amount)
+StageRow::StageRow(int amount, bool obstacleLane)
 {
+    isObstacleLane = obstacleLane;
     int offSet = (amount - 1) / 2;
     for (int i = 0; i < amount; i++) {
-        tilesInRow.push_back(new Tile());
+        Tile* temp = new Tile();
+
+        if (isObstacleLane) {
+            random = rand() % 2;
+            if (random == 0 && numObstacles < 5) {
+                temp->setObstacleTile();
+                numObstacles++;
+            }
+        }
+
+        tilesInRow.push_back(temp);
         tilesInRow.back()->setPosition(i-offSet);
     }
     bool moving = false;

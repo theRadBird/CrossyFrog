@@ -160,6 +160,7 @@ xcopy "$(SolutionDir)include\RE\Shaders" "$(SolutionDir)_Binary\Shaders" /y</Com
     <ClInclude Include="AppClass.h" />
     <ClInclude Include="BoundingObj.h" />
     <ClInclude Include="BoundingObjectManagerSingleton.h" />
+    <ClInclude Include="Mover.h" />
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="StageRow.h" />
@@ -176,6 +177,7 @@ xcopy "$(SolutionDir)include\RE\Shaders" "$(SolutionDir)_Binary\Shaders" /y</Com
     <ClCompile Include="BoundingObjectManagerSingleton.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Mover.cpp" />
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="StageRow.cpp" />

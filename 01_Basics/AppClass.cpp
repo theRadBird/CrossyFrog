@@ -11,24 +11,15 @@ void AppClass::InitWindow(String a_sWindowName)
 
 void AppClass::InitVariables(void)
 {
+    srand(time(0));
     m_v3Rotation = vector3(0.0f);
 
     //Set the camera at a position other than the default
     m_pCameraMngr->SetPositionTargetAndView(vector3(0.0f, 0.0f, 12.0f), vector3(0.0f, 0.0f, 0.0f), REAXISY);
 
     //Load a model onto the Mesh manager
-    //m_pMeshMngr->LoadModel("Minecraft\\Steve.obj", "Steve");
-    /*m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile1");
-    m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile2");
-    m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile3");
-    m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile4");
-    m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile5");
-    m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile6");
-    m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile7");
-    m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile8");
-    m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile9");*/
     m_pMeshMngr->LoadModel("Crossy\\character.obj", "character");
-    m_pMeshMngr->LoadModel("Crossy\\character.obj", "obstacle");
+    m_pMeshMngr->LoadModel("Crossy\\obstacle1.obj", "obstacle");
 
     player = new Character();
     obst1 = new Obstacle();
@@ -66,34 +57,10 @@ void AppClass::Update(void)
 
     /// Updates the stage
     worldStage->update(fTimeSpan);
-    //matrix4 mOrientation = glm::translate(vector3(-1.f, 0.f, 1.f));
+    
     vector3 playerMove = player->Update(fTimeSpan);
 
-    matrix4 mOrientationTile1 = glm::translate(vector3(-1.f, 0.f, 1.f));
-    matrix4 mOrientationTile2 = glm::translate(vector3(0.f, 0.f, 1.f));
-    matrix4 mOrientationTile3 = glm::translate(vector3(1.f, 0.f, 1.f));
-    matrix4 mOrientationTile4 = glm::translate(vector3(-1.f, 0.f, 0.f));
-    matrix4 mOrientationTile5 = glm::translate(vector3(0.f, 0.f, 0.f));
-    matrix4 mOrientationTile6 = glm::translate(vector3(1.f, 0.f, 0.f));
-    matrix4 mOrientationTile7 = glm::translate(vector3(-1.f, 0.f, -1.f));
-    matrix4 mOrientationTile8 = glm::translate(vector3(0.f, 0.f, -1.f));
-    matrix4 mOrientationTile9 = glm::translate(vector3(1.f, 0.f, -1.f));
-
-    
-
-    //m_pMeshMngr->SetModelMatrix(mOrientation, "Steve");
     m_pMeshMngr->SetModelMatrix(glm::translate(playerMove), "character");
-    m_pMeshMngr->SetModelMatrix(glm::translate(0.0f, 0.0f, -1.0f), "obstacle");
-
-    //m_pMeshMngr->SetModelMatrix(mOrientationTile1, "tile1");
-    //m_pMeshMngr->SetModelMatrix(mOrientationTile2, "tile2");
-    //m_pMeshMngr->SetModelMatrix(mOrientationTile3, "tile3");
-    //m_pMeshMngr->SetModelMatrix(mOrientationTile4, "tile4");
-    //m_pMeshMngr->SetModelMatrix(mOrientationTile5, "tile5");
-    //m_pMeshMngr->SetModelMatrix(mOrientationTile6, "tile6");
-    //m_pMeshMngr->SetModelMatrix(mOrientationTile7, "tile7");
-    //m_pMeshMngr->SetModelMatrix(mOrientationTile8, "tile8");
-    //m_pMeshMngr->SetModelMatrix(mOrientationTile9, "tile9");
 
     //Adds all loaded instance to the render list
     m_pMeshMngr->AddInstanceToRenderList("ALL");

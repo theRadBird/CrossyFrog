@@ -1,5 +1,6 @@
 #pragma once
 #include "StageRow.h"
+
 class Stage
 {
 public:
@@ -20,5 +21,8 @@ private:
     float slideTime;
     float moveCounter;
     vector3 stagePos;
+    int random;
+    bool wasObstacle = false;
+    StageRow* temp;
 };
 

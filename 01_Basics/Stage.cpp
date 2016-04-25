@@ -4,7 +4,7 @@ Stage::Stage() {
 	m_pMeshMngr = MeshManagerSingleton::GetInstance();
     float slideTime = 0.0f;
 	for (int i = 0; i < 3; i++) {
-        rowsInStage.push_back(new StageRow(3));
+        rowsInStage.push_back(new StageRow(3, false));
         rowsInStage.back()->setPosition(i);
     }
     moveCounter = 0.f;
@@ -14,7 +14,20 @@ Stage::Stage() {
 Stage::Stage(int rowCount)
 {
     for (int i = 0; i < rowCount; i++) {
-        rowsInStage.push_back(new StageRow(rowCount));
+        random = rand() % 2;
+        if (random == 0 && wasObstacle == false) {
+            wasObstacle = true;
+            temp = new StageRow(rowCount, wasObstacle);
+        }
+        else { 
+            wasObstacle = false; 
+            temp = new StageRow(rowCount, wasObstacle);
+        }
+        
+        std::cout << "Random: " << random << std::endl;
+        std::cout << "Was Obstacle: " << wasObstacle << std::endl;
+
+        rowsInStage.push_back(temp);
         rowsInStage.back()->setPosition(static_cast<float>(-i+1));
     }
 	m_pMeshMngr = MeshManagerSingleton::GetInstance();

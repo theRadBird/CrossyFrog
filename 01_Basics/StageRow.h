@@ -1,9 +1,11 @@
 #pragma once
 #include "Tile.h"
+#include "Mover.h"
+
 class StageRow
 {
 public:
-    StageRow(int amount);
+    StageRow(int amount, bool isObstacle);
     ~StageRow();
     
     void setPosition(float rowPos);
@@ -18,5 +20,8 @@ private:
     vector3 pos;
     int rowPlace;
     bool moving;
+    bool isObstacleLane = false;
+    int random;
+    int numObstacles = 0;
 };
 
