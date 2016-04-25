@@ -62,7 +62,9 @@ void Stage::update(double dt) {
         if (slideTime >= 1.0f) {
             if (moveFor) {
                 moveCounter++;
-                maxMoved++;
+                if (moveCounter > maxMoved) { // Maintains highest lane progress for player
+                    maxMoved++;
+                }
             }
             else moveCounter--;
             lerpPos = moveFor ? vector3(.0f, .0f, moveCounter) : vector3(.0f, .0f, moveCounter);
