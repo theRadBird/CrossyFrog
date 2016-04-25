@@ -18,14 +18,15 @@ StageRow::~StageRow()
 }
 
 void StageRow::setPosition(float setPos) {
-    position = glm::translate(0.0f,0.0f,setPos);
+    rowPlace = setPos;
+    pos = vector3(0.0f, 0.0f, setPos);
+    position = glm::translate(pos);
     updateTiles(); 
 }
 
 void StageRow::updatePosition(vector3 moveDir) {
-    
     position = glm::translate(moveDir);
-    
+    position *= glm::translate(pos);
     updateTiles();
 }
 

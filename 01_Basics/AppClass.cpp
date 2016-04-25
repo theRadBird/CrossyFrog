@@ -18,7 +18,7 @@ void AppClass::InitVariables(void)
 
     //Load a model onto the Mesh manager
     //m_pMeshMngr->LoadModel("Minecraft\\Steve.obj", "Steve");
-    m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile1");
+    /*m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile1");
     m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile2");
     m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile3");
     m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile4");
@@ -26,9 +26,9 @@ void AppClass::InitVariables(void)
     m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile6");
     m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile7");
     m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile8");
-    m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile9");
+    m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile9");*/
     m_pMeshMngr->LoadModel("Crossy\\character.obj", "character");
-    m_pMeshMngr->LoadModel("Crossy\\obstacle1.obj", "obstacle");
+    m_pMeshMngr->LoadModel("Crossy\\character.obj", "obstacle");
 
     player = new Character();
     obst1 = new Obstacle();
@@ -83,7 +83,7 @@ void AppClass::Update(void)
 
     //m_pMeshMngr->SetModelMatrix(mOrientation, "Steve");
     m_pMeshMngr->SetModelMatrix(glm::translate(playerMove), "character");
-    m_pMeshMngr->SetModelMatrix(glm::translate(obst1->getPosition()), "obstacle");
+    m_pMeshMngr->SetModelMatrix(glm::translate(0.0f, 0.0f, -1.0f), "obstacle");
 
     //m_pMeshMngr->SetModelMatrix(mOrientationTile1, "tile1");
     //m_pMeshMngr->SetModelMatrix(mOrientationTile2, "tile2");

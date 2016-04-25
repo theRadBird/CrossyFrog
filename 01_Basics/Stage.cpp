@@ -57,7 +57,7 @@ void Stage::update(double dt) {
                 lerpPos = glm::lerp(stagePos, vector3(.0f, .0f, 1.0f), percent);
             }
             else {
-                lerpPos = glm::lerp(vector3(.0f, .0f, -1.0f), stagePos, percent);
+                lerpPos = glm::lerp(stagePos, vector3(0.0f,0.0f,-1.0f), percent);
             }
         }
        std::cout << lerpPos.z << std::endl;

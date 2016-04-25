@@ -1,13 +1,10 @@
 #include "Tile.h"
 
-
-
 Tile::Tile()
 {
     position = IDENTITY_M4;
 	m_pMeshMngr = MeshManagerSingleton::GetInstance();
 }
-
 
 Tile::~Tile()
 {
@@ -15,11 +12,12 @@ Tile::~Tile()
 
 
 void Tile::setPosition(int setPos) {
-    position = glm::translate(static_cast<float>(setPos), 0.0f, 0.0f);
+    pos = vector3(static_cast<float>(setPos), 0.0f, 0.0f);
+    position = glm::translate(pos);
 }
 
 void Tile::updatePosition(matrix4 rowMat) {
-    position *= rowMat;
+    position = glm::translate(rowMat,pos);
 }
 
 void Tile::update(double dt) {

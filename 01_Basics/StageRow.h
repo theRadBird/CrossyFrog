@@ -16,6 +16,7 @@ private:
     std::vector<Tile*> tilesInRow;
     matrix4 position;
     vector3 pos;
+    int rowPlace;
     bool moving;
 };
 
