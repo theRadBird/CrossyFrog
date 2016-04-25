@@ -6,7 +6,7 @@ void AppClass::InitWindow(String a_sWindowName)
                                // Set the clear color based on Microsoft's CornflowerBlue (default in XNA)
                                //if this line is in Init Application it will depend on the .cfg file, if it
                                //is on the InitVariables it will always force it regardless of the .cfg
-    m_v4ClearColor = vector4(0.4f, 0.6f, 0.9f, 0.0f); 
+    m_v4ClearColor = vector4(.9f, .9f, .9f, 0.0f); 
 }
 
 void AppClass::InitVariables(void)
@@ -38,6 +38,8 @@ void AppClass::InitVariables(void)
 
     worldStage = new Stage(7);
 
+    m_pCameraMngr->SetPositionTargetAndView(vector3(3.f, 6.f, 4.f), vector3(0.f, 0.f, -2.f), vector3(0.f, 1.f, 0.f), -1);
+
 }
 
 void AppClass::Update(void)
@@ -49,8 +51,8 @@ void AppClass::Update(void)
     m_pMeshMngr->Update();
 
     //First person camera movement
-    if (m_bFPC == true)
-        CameraRotation();
+    //if (m_bFPC == true)
+        //CameraRotation();
 
     //Call the arcball method
     ArcBall();
