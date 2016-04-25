@@ -18,5 +18,7 @@ private:
     std::vector<StageRow*> rowsInStage;
     bool moveFor, moveBack;
     float slideTime;
+    float moveCounter;
+    vector3 stagePos;
 };
 
