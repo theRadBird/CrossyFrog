@@ -8,6 +8,7 @@ Stage::Stage() {
         rowsInStage.back()->setPosition(i);
     }
     moveCounter = 0.f;
+    maxMoved = 0;
     stagePos = vector3(0.f);
 }
 
@@ -61,6 +62,7 @@ void Stage::update(double dt) {
         if (slideTime >= 1.0f) {
             if (moveFor) {
                 moveCounter++;
+                maxMoved++;
             }
             else moveCounter--;
             lerpPos = moveFor ? vector3(.0f, .0f, moveCounter) : vector3(.0f, .0f, moveCounter);
