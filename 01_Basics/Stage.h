@@ -8,6 +8,11 @@ public:
     ~Stage();
     void MoveForward();
     void MoveBackward();
+    void update(double dt);
+    void draw();
+
+protected:
+	MeshManagerSingleton* m_pMeshMngr;
 
 private:
     std::vector<StageRow*> rowsInStage;

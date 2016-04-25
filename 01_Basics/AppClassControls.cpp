@@ -27,11 +27,13 @@ void AppClass::ProcessKeyboard(void)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
         m_pCameraMngr->MoveForward(fSpeed);
         player->startJump();
+        worldStage->MoveForward();
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
         m_pCameraMngr->MoveForward(-fSpeed);
         player->startJump();
+        worldStage->MoveBackward();
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {

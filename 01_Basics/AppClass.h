@@ -15,11 +15,11 @@ using namespace ReEng; //Using ReEng namespace to use all the classes in the dll
 
 class AppClass : public ReEngAppClass
 {
-    vector3 m_v3Rotation = vector3(0.0f);
-    Character* player = new Character();
+    vector3 m_v3Rotation;
+    Character* player;
 
-    Obstacle* obst1 = new Obstacle();
-    Stage worldStage;
+    Obstacle* obst1;
+    Stage* worldStage;
 
     double fTimeSpan;
 public:
