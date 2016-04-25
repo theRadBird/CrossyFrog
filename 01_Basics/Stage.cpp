@@ -12,7 +12,7 @@ Stage::Stage(int rowCount)
 {
     for (int i = 0; i < rowCount; i++) {
         rowsInStage.push_back(new StageRow(rowCount));
-        rowsInStage.back()->setPosition(i);
+        rowsInStage.back()->setPosition(-i+1);
     }
 	m_pMeshMngr = MeshManagerSingleton::GetInstance();
 	m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile");
@@ -33,3 +33,13 @@ void Stage::MoveBackward() {
 
 }
 
+void Stage::update(double dt) {
+
+}
+
+void Stage::draw()
+{
+    for each(StageRow* sRow in rowsInStage) {
+        sRow->draw();
+    }
+}

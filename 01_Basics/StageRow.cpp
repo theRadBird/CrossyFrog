@@ -34,5 +34,7 @@ void StageRow::update(double dt) {
 }
 
 void StageRow::draw() {
-
+    for each(Tile* t in tilesInRow) {
+        t->draw();
+    }
 }
