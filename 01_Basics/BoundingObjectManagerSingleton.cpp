@@ -1,5 +1,7 @@
 #include "BoundingObjectManagerSingleton.h"
 
+BoundingObjectManagerSingleton* BoundingObjectManagerSingleton::instance = nullptr;
+
 int BoundingObjectManagerSingleton::AddBoundingObj(BoundingObj* obj) {
     boundingObjects.push_back(obj);
     objCount++;
@@ -40,8 +42,5 @@ BoundingObj* BoundingObjectManagerSingleton::GetBoundingObj(int index) {
 }
 
 void BoundingObjectManagerSingleton::Update() {
-    for (int i = 0; i < boundingObjects.size(); i++) {
-        BoundingObj* a = boundingObjects[i];
-        BoundingObj* b = boundingObjects[i + 1];
-    }
+    
 }

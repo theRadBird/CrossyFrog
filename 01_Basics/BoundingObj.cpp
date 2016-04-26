@@ -110,6 +110,7 @@ bool BoundingObj::isColliding(BoundingObj* const other)
     if (status && wMmax1.z < wMmin2.z || wMmin1.z > wMmax2.z) {
         status = false;
     }
-
+    
+    
     return status;
 }

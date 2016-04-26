@@ -6,7 +6,7 @@ void AppClass::InitWindow(String a_sWindowName)
                                // Set the clear color based on Microsoft's CornflowerBlue (default in XNA)
                                //if this line is in Init Application it will depend on the .cfg file, if it
                                //is on the InitVariables it will always force it regardless of the .cfg
-    m_v4ClearColor = vector4(.9f, .9f, .9f, 0.0f); 
+    m_v4ClearColor = vector4(.9f, .9f, .9f, 0.0f);
 }
 
 void AppClass::InitVariables(void)
@@ -20,15 +20,20 @@ void AppClass::InitVariables(void)
     //Load a model onto the Mesh manager
     m_pMeshMngr->LoadModel("Crossy\\character.obj", "character");
     m_pMeshMngr->LoadModel("Crossy\\obstacle1.obj", "obstacle");
+    bObj_Man = BoundingObjectManagerSingleton::GetInstance();
 
     player = new Character();
     obst1 = new Obstacle();
     mover1 = new Mover();
-    
+
     obst1->setPosition(vector3(0.f, 0.6f, -1.f));
     obst1->setRadius(0.75f);
 
     worldStage = new Stage(7);
+
+    playerIndex = bObj_Man->AddBoundingObj(new BoundingObj(m_pMeshMngr->GetVertexList("character")));
+    obstIndex = bObj_Man->AddBoundingObj(new BoundingObj(m_pMeshMngr->GetVertexList("obstacle")));
+
 
     m_pCameraMngr->SetPositionTargetAndView(vector3(3.f, 6.f, 4.f), vector3(0.f, 0.f, -2.f), vector3(0.f, 1.f, 0.f), -1);
 
@@ -58,12 +63,19 @@ void AppClass::Update(void)
 
     /// Updates the stage
     worldStage->update(fTimeSpan);
-    
+
     vector3 playerMove = player->Update(fTimeSpan);
     mover1->update(fTimeSpan);
 
     m_pMeshMngr->SetModelMatrix(glm::translate(playerMove), "character");
 
+    bObj_Man->GetBoundingObj(playerIndex)->setModelToWorld(m_pMeshMngr->GetModelMatrix("character"));
+    vector3 temp = mover1->getPosition();
+    //bObj_Man->GetBoundingObj(obstIndex)->setModelToWorld(matrix4(IDENTITY_M4* vector4(temp.x, temp.y, temp.z,1.0f)));
+    
+    if(bObj_Man->CheckCollision(0, 1)){
+        bObj_Man->SetBoundingObjectColor(1, REGREEN);
+    }
     //Adds all loaded instance to the render list
     m_pMeshMngr->AddInstanceToRenderList("ALL");
 
@@ -83,6 +95,8 @@ void AppClass::Display(void)
     //clear the screen
     ClearScreen();
     worldStage->draw();
+
+    bObj_Man->RenderAllBoundingObjects();
     //Render the grid based on the camera's mode:
     switch (m_pCameraMngr->GetCameraMode())
     {

@@ -3,8 +3,6 @@
 
 #pragma once
 #include "BoundingObj.h"
-#include "RE\ReEngAppClass.h"
-#include <SFML\Graphics.hpp>
 
 class BoundingObjectManagerSingleton
 {

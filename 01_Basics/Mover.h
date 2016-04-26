@@ -12,7 +12,7 @@ public:
 
     void setPosition(vector3 pos);
     vector3 getPosition();
-
+    
     void setRadius(float rad);
     float getRadius();
 

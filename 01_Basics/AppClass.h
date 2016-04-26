@@ -22,8 +22,10 @@ class AppClass : public ReEngAppClass
     Obstacle* obst1;
     Mover* mover1;
     Stage* worldStage;
-
+    BoundingObjectManagerSingleton* bObj_Man;
     double fTimeSpan;
+    int playerIndex, obstIndex;
+
 public:
     typedef ReEngAppClass super;
 
