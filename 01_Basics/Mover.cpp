@@ -50,12 +50,12 @@ void Mover::update(double dt) {
             traverseRunTime = 0.f;
             reverse = true;
             
-            m_pMeshMngr->SetModelMatrix(glm::translate(position), "obstacle");
-            m_pMeshMngr->AddInstanceToRenderList("obstacle");
+            m_pMeshMngr->SetModelMatrix(glm::translate(position), "mover");
+            m_pMeshMngr->AddInstanceToRenderList("mover");
         }
         else {
-            m_pMeshMngr->SetModelMatrix(glm::translate(sidewaysPosChange), "obstacle");
-            m_pMeshMngr->AddInstanceToRenderList("obstacle");
+            m_pMeshMngr->SetModelMatrix(glm::translate(sidewaysPosChange), "mover");
+            m_pMeshMngr->AddInstanceToRenderList("mover");
         }
     }
     else {
@@ -84,12 +84,12 @@ void Mover::update(double dt) {
             percent = 0.f;
             traverseRunTime = 0.f;
             reverse = false;
-            m_pMeshMngr->SetModelMatrix(glm::translate(position), "obstacle");
-            m_pMeshMngr->AddInstanceToRenderList("obstacle");
+            m_pMeshMngr->SetModelMatrix(glm::translate(position), "mover");
+            m_pMeshMngr->AddInstanceToRenderList("mover");
         }
         else {
-            m_pMeshMngr->SetModelMatrix(glm::translate(sidewaysPosChange), "obstacle");
-            m_pMeshMngr->AddInstanceToRenderList("obstacle");
+            m_pMeshMngr->SetModelMatrix(glm::translate(sidewaysPosChange), "mover");
+            m_pMeshMngr->AddInstanceToRenderList("mover");
         }
     }
 }
