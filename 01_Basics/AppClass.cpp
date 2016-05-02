@@ -45,7 +45,7 @@ void AppClass::Update(void)
 
     //Update the mesh manager's time without updating for collision detection
     m_pMeshMngr->Update();
-
+    bObj_Man->Update();
     //First person camera movement
     if (m_bFPC == true)
         CameraRotation();
@@ -68,6 +68,8 @@ void AppClass::Update(void)
     m_pMeshMngr->SetModelMatrix(glm::translate(playerMove), "character");
 
     bObj_Man->GetBoundingObj(playerIndex)->setModelToWorld(m_pMeshMngr->GetModelMatrix("character"));
+
+// vector3 temp = mover1->getPosition();
     //bObj_Man->GetBoundingObj(obstIndex)->setModelToWorld(matrix4(IDENTITY_M4* vector4(temp.x, temp.y, temp.z,1.0f)));
     
     if(bObj_Man->CheckCollision(0, 1)){

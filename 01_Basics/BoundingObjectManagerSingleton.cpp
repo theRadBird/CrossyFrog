@@ -3,8 +3,10 @@
 BoundingObjectManagerSingleton* BoundingObjectManagerSingleton::instance = nullptr;
 
 int BoundingObjectManagerSingleton::AddBoundingObj(BoundingObj* obj) {
-    boundingObjects.push_back(obj);
+   boundingObjects.push_back(obj);
     objCount++;
+    std::vector<int> lVector;
+    collisions.push_back(lVector);
     return objCount - 1;
 }
 
@@ -42,5 +44,24 @@ BoundingObj* BoundingObjectManagerSingleton::GetBoundingObj(int index) {
 }
 
 void BoundingObjectManagerSingleton::Update() {
-    
+    for (uint nObject = 0; nObject < objCount; nObject++)
+    {
+        collisions[nObject].clear();
+    }
+    CheckCollisions();
+}
+
+void BoundingObjectManagerSingleton::CheckCollisions(void)
+{
+    for (uint nObjectA = 0; nObjectA < objCount - 1; nObjectA++)
+    {
+        for (uint nObjectB = nObjectA + 1; nObjectB < objCount; nObjectB++)
+        {
+            if (boundingObjects[nObjectA]->isColliding(boundingObjects[nObjectB]))
+            {
+                collisions[nObjectA].push_back(nObjectB);
+                collisions[nObjectB].push_back(nObjectA);
+            }
+        }
+    }
 }

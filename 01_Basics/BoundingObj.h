@@ -12,9 +12,13 @@ private:
     vector3 minVert, maxVert;
     //std::vector<vector3> verts;
     vector3 centroid;
+    vector3 m_v3HalfWidth;
     matrix4 m2World = IDENTITY_M4;
     bool visible;
     MeshManagerSingleton* mpMesh = nullptr;
+
+    vector3 TransformVector(matrix4 m, vector3 v);
+    vector3 TransformLocalAxis(BoundingObj* box, vector3 axis);
 
 public:
     BoundingObj(std::vector<vector3> modelVerts);

@@ -9,7 +9,8 @@ class BoundingObjectManagerSingleton
     MeshManagerSingleton* m_pMeshMngr = nullptr;
     int objCount = 0;
     std::vector<BoundingObj*> boundingObjects; //list of BOs
-    std::vector<std::vector<std::vector<int>>> collisions;
+    std::vector<std::vector<int>> collisions;
+    std::map<String, uint> mapIndex;
 
 private:
     static BoundingObjectManagerSingleton* instance;
@@ -22,6 +23,7 @@ private:
     BoundingObjectManagerSingleton& operator=(BoundingObjectManagerSingleton const& other) {
         instance = other.GetInstance();
     };
+    void BoundingObjectManagerSingleton::CheckCollisions(void);
 
 public:
     static BoundingObjectManagerSingleton* GetInstance() {

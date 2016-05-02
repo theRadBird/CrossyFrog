@@ -29,6 +29,8 @@ Stage::Stage(int rowCount)
             temp = new StageRow(rowCount, wasObstacle, random);
             std::cout << "Random for mover type: " << random << std::endl;
         }
+        //std::cout << "Random: " << random << std::endl;
+        //std::cout << "Was Obstacle: " << wasObstacle << std::endl;
 
         rowsInStage.push_back(temp);
         rowsInStage.back()->setPosition(static_cast<float>(-i+1));

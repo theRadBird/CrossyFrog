@@ -48,7 +48,7 @@ vector3 Character::CharSideways(double rt) {
             sidewaysRunTime = 0.f;
             sidewaysRight = false;
             laneIncrement += 1.f;
-            std::cout << laneIncrement << std::endl;
+            //std::cout << laneIncrement << std::endl;
             return position;
         }
         else return sidewaysPosChange;
@@ -66,7 +66,7 @@ vector3 Character::CharSideways(double rt) {
             sidewaysRunTime = 0.f;
             sidewaysLeft = false;
             laneIncrement -= 1.f;
-            std::cout << laneIncrement << std::endl;
+            //std::cout << laneIncrement << std::endl;
             return position;
         }
         else return sidewaysPosChange;
