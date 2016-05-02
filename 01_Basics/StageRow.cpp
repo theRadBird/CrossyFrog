@@ -13,13 +13,14 @@ StageRow::StageRow(int amount, bool obstacleLane, int type)
                 temp->setObstacleTile();
                 numObstacles++;
             }
-            std::cout << "Obstacles created for obstacle lane: " << numObstacles << std::endl;
         }
 
-        if (type < 4 && !isObstacleLane) {
-            std::cout << "Hit mover creation if statement" << std::endl;
+        if (type < 4 && !isObstacleLane && numMovers < 1) {
             Mover* tempMover = new Mover();
+            random = rand() % 3 + 7.f;
+            tempMover->setSpeed(random);
             moversInRow.push_back(tempMover);
+            numMovers++;
         }
 
         tilesInRow.push_back(temp);
@@ -41,7 +42,11 @@ void StageRow::setPosition(float setPos) {
     position = glm::translate(pos);
     updateTiles(); 
     for (Mover* temp : moversInRow) {
-        temp->setPosition(vector3(3.f, 0.5f, rowPlace));
+        random = rand() % 2;
+        if (random == 0) {
+            temp->setPosition(vector3(3.f, 0.5f, rowPlace));
+        }
+        else { temp->setPosition(vector3(-3.f, 0.5f, rowPlace)); temp->setReverse(); }
         std::cout << "Mover position set: " << rowPlace << std::endl;
     }
 }

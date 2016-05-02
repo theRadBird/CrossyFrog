@@ -137,3 +137,7 @@ void Mover::setLerpPos(vector3 lerpPos_) {
 vector3 Mover::getLerpPos() {
     return lerpPos;
 }
+
+void Mover::setReverse() {
+    reverse = true;
+}

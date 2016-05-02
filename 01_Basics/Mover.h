@@ -24,6 +24,8 @@ public:
     void setLerpPos(vector3 lerpPos_);
     vector3 getLerpPos();
 
+    void setReverse();
+
 protected:
     MeshManagerSingleton* m_pMeshMngr;
 

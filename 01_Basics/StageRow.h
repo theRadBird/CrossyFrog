@@ -27,6 +27,7 @@ private:
     int whichType; // tracks which kind of moving lane it is. 0 for <>, 1 for ->, or 2 for <-. Pass in 4 for no movers
     int random;
     int numObstacles = 0;
+    int numMovers = 0;
     float percent;
 };
 
