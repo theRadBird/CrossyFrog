@@ -18,6 +18,7 @@ protected:
 private:
     std::vector<StageRow*> rowsInStage;
     bool moveFor, moveBack;
+    float percent;
     float slideTime;
     float moveCounter;
     int maxMoved; // Can return this to tell player how far they got

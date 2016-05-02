@@ -8,7 +8,6 @@ Date: 2015/09 (Last Modified on: 15/11)
 #include "Stage.h"
 #include "Character.h"
 #include "Obstacle.h"
-#include "Mover.h"
 #include "BoundingObjectManagerSingleton.h"
 
 
@@ -20,7 +19,6 @@ class AppClass : public ReEngAppClass
     Character* player;
 
     Obstacle* obst1;
-    Mover* mover1;
     Stage* worldStage;
     BoundingObjectManagerSingleton* bObj_Man;
     double fTimeSpan;

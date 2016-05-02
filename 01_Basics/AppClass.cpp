@@ -24,7 +24,6 @@ void AppClass::InitVariables(void)
 
     player = new Character();
     obst1 = new Obstacle();
-    mover1 = new Mover();
 
     obst1->setPosition(vector3(0.f, 0.6f, -1.f));
     obst1->setRadius(0.75f);
@@ -65,12 +64,10 @@ void AppClass::Update(void)
     worldStage->update(fTimeSpan);
 
     vector3 playerMove = player->Update(fTimeSpan);
-    mover1->update(fTimeSpan);
 
     m_pMeshMngr->SetModelMatrix(glm::translate(playerMove), "character");
 
     bObj_Man->GetBoundingObj(playerIndex)->setModelToWorld(m_pMeshMngr->GetModelMatrix("character"));
-    vector3 temp = mover1->getPosition();
     //bObj_Man->GetBoundingObj(obstIndex)->setModelToWorld(matrix4(IDENTITY_M4* vector4(temp.x, temp.y, temp.z,1.0f)));
     
     if(bObj_Man->CheckCollision(0, 1)){

@@ -4,7 +4,7 @@ Stage::Stage() {
 	m_pMeshMngr = MeshManagerSingleton::GetInstance();
     float slideTime = 0.0f;
 	for (int i = 0; i < 3; i++) {
-        rowsInStage.push_back(new StageRow(3, false));
+        rowsInStage.push_back(new StageRow(3, false, 4));
         rowsInStage.back()->setPosition(i);
     }
     moveCounter = 0.f;
@@ -16,17 +16,19 @@ Stage::Stage(int rowCount)
 {
     for (int i = 0; i < rowCount; i++) {
         random = rand() % 2;
-        if (random == 0 && wasObstacle == false) {
+        std::cout << "Obst or Mover lane (0 obst, 1 mover): " << random << std::endl;
+        if (random == 0 && wasObstacle == false) { // Generates obstacle lane
+            std::cout << "Obst lane created" << std::endl;
             wasObstacle = true;
-            temp = new StageRow(rowCount, wasObstacle);
+            temp = new StageRow(rowCount, wasObstacle, 4);
         }
-        else { 
+        else { // Generates mover lane
+            std::cout << "Mover lane created" << std::endl;
             wasObstacle = false; 
-            temp = new StageRow(rowCount, wasObstacle);
+            random = rand() % 3;
+            temp = new StageRow(rowCount, wasObstacle, random);
+            std::cout << "Random for mover type: " << random << std::endl;
         }
-        
-        std::cout << "Random: " << random << std::endl;
-        std::cout << "Was Obstacle: " << wasObstacle << std::endl;
 
         rowsInStage.push_back(temp);
         rowsInStage.back()->setPosition(static_cast<float>(-i+1));
@@ -74,7 +76,7 @@ void Stage::update(double dt) {
             stagePos = lerpPos;
         }
         else {
-            float percent = MapValue(slideTime, 0.f, 1.0f, 0.f, 1.f);
+            percent = MapValue(slideTime, 0.f, 1.0f, 0.f, 1.f);
 
             if (moveFor) {
                 lerpPos = glm::lerp(stagePos, vector3(.0f, .0f, moveCounter + 1.f), percent);
@@ -83,10 +85,13 @@ void Stage::update(double dt) {
                 lerpPos = glm::lerp(stagePos, vector3(0.0f,0.0f, moveCounter - 1.f), percent);
             }
         }
-        std::cout << lerpPos.z << std::endl;
+        //std::cout << lerpPos.z << std::endl;
         for each(StageRow* sRow in rowsInStage) {
-            sRow->updatePosition(lerpPos);
+            sRow->updatePosition(lerpPos, percent);
         }
+    }
+    for each(StageRow* sRow in rowsInStage) {
+        sRow->update(dt);
     }
 }
 
