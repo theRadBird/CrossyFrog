@@ -43,11 +43,11 @@ void StageRow::setPosition(float setPos) {
     updateTiles(); 
     for (Mover* temp : moversInRow) {
         random = rand() % 2;
+        if (rowPlace < -5) { rowPlace = -5; } // The bug is here
         if (random == 0) {
             temp->setPosition(vector3(3.f, 0.5f, rowPlace));
         }
         else { temp->setPosition(vector3(-3.f, 0.5f, rowPlace)); temp->setReverse(); }
-        std::cout << "Mover position set: " << rowPlace << std::endl;
     }
 }
 
@@ -82,4 +82,8 @@ void StageRow::draw() {
     for each(Tile* t in tilesInRow) {
         t->draw();
     }
+}
+
+bool StageRow::getLaneType() {
+    return isObstacleLane;
 }

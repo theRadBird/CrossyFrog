@@ -16,18 +16,17 @@ Stage::Stage(int rowCount)
 {
     for (int i = 0; i < rowCount; i++) {
         random = rand() % 2;
-        std::cout << "Obst or Mover lane (0 obst, 1 mover): " << random << std::endl;
         if (random == 0 && wasObstacle == false) { // Generates obstacle lane
-            std::cout << "Obst lane created" << std::endl;
             wasObstacle = true;
             temp = new StageRow(i, rowCount, wasObstacle, 4);
         }
         else { // Generates mover lane
-            std::cout << "Mover lane created" << std::endl;
             wasObstacle = false; 
             random = rand() % 3;
+
             temp = new StageRow(i, rowCount, wasObstacle, random);
             std::cout << "Random for mover type: " << random << std::endl;
+
         }
         //std::cout << "Random: " << random << std::endl;
         //std::cout << "Was Obstacle: " << wasObstacle << std::endl;
@@ -69,6 +68,26 @@ void Stage::update(double dt) {
                 if (moveCounter > maxMoved) { // Maintains highest lane progress for player
                     maxMoved++;
                 }
+
+                rowsInStage.erase(rowsInStage.begin());
+                stagePosTracker--;
+                if (rowsInStage[5]->getLaneType() == true) {
+                    wasObstacle = true;
+                }
+                else { wasObstacle = false; }
+
+                random = rand() % 2;
+                if (random == 0 && wasObstacle == false) { // Generates obstacle lane
+                    wasObstacle = true;
+                    temp = new StageRow(7 + maxMoved, 7.f, wasObstacle, 4);
+                }
+                else { // Generates mover lane
+                    wasObstacle = false;
+                    random = rand() % 3;
+                    temp = new StageRow(7 + maxMoved, 7.f, wasObstacle, random);
+                }
+                rowsInStage.push_back(temp);
+                rowsInStage.back()->setPosition(stagePosTracker);
             }
             else moveCounter--;
             lerpPos = moveFor ? vector3(.0f, .0f, moveCounter) : vector3(.0f, .0f, moveCounter);
