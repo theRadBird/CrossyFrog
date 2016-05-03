@@ -1,11 +1,11 @@
 #include "StageRow.h"
 
-StageRow::StageRow(int amount, bool obstacleLane, int type)
+StageRow::StageRow(int id, int amount, bool obstacleLane, int type)
 {
     isObstacleLane = obstacleLane;
     int offSet = (amount - 1) / 2;
     for (int i = 0; i < amount; i++) {
-        Tile* temp = new Tile();
+        Tile* temp = new Tile((id*10)+i);
 
         if (isObstacleLane) {
             random = rand() % 2;

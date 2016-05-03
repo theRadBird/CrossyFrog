@@ -1,9 +1,12 @@
 #include "Tile.h"
 
-Tile::Tile()
+Tile::Tile(int num)
 {
     position = IDENTITY_M4;
 	m_pMeshMngr = MeshManagerSingleton::GetInstance();
+    meshName = "tile" + std::to_string(num);
+    m_pMeshMngr->LoadModel("Crossy\\tile.obj", meshName);
+    
 }
 
 Tile::~Tile()
@@ -29,8 +32,8 @@ void Tile::draw() {
         m_pMeshMngr->SetModelMatrix(glm::translate(position, vector3(0.f, 0.5f, 0.f)), "obstacle");
         m_pMeshMngr->AddInstanceToRenderList("obstacle");
     }
-	m_pMeshMngr->SetModelMatrix(position, "tile");
-	m_pMeshMngr->AddInstanceToRenderList("tile");
+	m_pMeshMngr->SetModelMatrix(position, meshName);
+	m_pMeshMngr->AddInstanceToRenderList(meshName);
 }
 
 void Tile::setObstacleTile() {

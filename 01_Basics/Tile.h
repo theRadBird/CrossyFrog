@@ -1,11 +1,12 @@
 #pragma once
 #include "RE\ReEngAppClass.h"
 #include <SFML\Graphics.hpp>
+#include <string>
 
 class Tile
 {	
 public:
-    Tile();
+    Tile(int num);
     ~Tile();
 
     void setPosition(int pos);
@@ -21,6 +22,7 @@ private:
     vector3 pos;
     bool collidable;
     bool isObstacleTile = false;
+    String meshName;
     //std::vector<Obstacle> Props;
     
 };

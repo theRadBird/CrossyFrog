@@ -5,7 +5,7 @@
 class StageRow
 {
 public:
-    StageRow(int amount, bool isObstacle, int type);
+    StageRow(int id, int amount, bool isObstacle, int type);
     ~StageRow();
     
     void setPosition(float rowPos);

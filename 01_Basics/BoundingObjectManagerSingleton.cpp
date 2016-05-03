@@ -28,6 +28,12 @@ void BoundingObjectManagerSingleton::RenderBoundingObject(int index) {
 
 void BoundingObjectManagerSingleton::RenderAllBoundingObjects() {
     for (int i = 0; i < boundingObjects.size(); i++) {
+        if (collisions[i].size() > 0) {
+            boundingObjects[i]->setColor(RERED);
+        }
+        else {
+            boundingObjects[i]->setColor(REGREEN);
+        }
         boundingObjects[i]->draw();
     }
 }

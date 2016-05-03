@@ -4,7 +4,7 @@ Stage::Stage() {
 	m_pMeshMngr = MeshManagerSingleton::GetInstance();
     float slideTime = 0.0f;
 	for (int i = 0; i < 3; i++) {
-        rowsInStage.push_back(new StageRow(3, false, 4));
+        rowsInStage.push_back(new StageRow(i, 3, false, 4));
         rowsInStage.back()->setPosition(i);
     }
     moveCounter = 0.f;
@@ -20,13 +20,13 @@ Stage::Stage(int rowCount)
         if (random == 0 && wasObstacle == false) { // Generates obstacle lane
             std::cout << "Obst lane created" << std::endl;
             wasObstacle = true;
-            temp = new StageRow(rowCount, wasObstacle, 4);
+            temp = new StageRow(i, rowCount, wasObstacle, 4);
         }
         else { // Generates mover lane
             std::cout << "Mover lane created" << std::endl;
             wasObstacle = false; 
             random = rand() % 3;
-            temp = new StageRow(rowCount, wasObstacle, random);
+            temp = new StageRow(i, rowCount, wasObstacle, random);
             std::cout << "Random for mover type: " << random << std::endl;
         }
         //std::cout << "Random: " << random << std::endl;
@@ -36,7 +36,7 @@ Stage::Stage(int rowCount)
         rowsInStage.back()->setPosition(static_cast<float>(-i+1));
     }
 	m_pMeshMngr = MeshManagerSingleton::GetInstance();
-	m_pMeshMngr->LoadModel("Crossy\\tile.obj", "tile");
+	
 }
 
 Stage::~Stage()

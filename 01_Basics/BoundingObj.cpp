@@ -30,16 +30,16 @@ BoundingObj::BoundingObj(std::vector<vector3> modelVects)
         }
 
         // Z
-        if (modelVects[i].y > maxVert.y) {
-            maxVert.y = modelVects[i].y;
-        }else if(modelVects[i].y < minVert.y) {
-            minVert.y = modelVects[i].y;
+        if (modelVects[i].z > maxVert.z) {
+            maxVert.z = modelVects[i].z;
+        }else if(modelVects[i].y < minVert.z) {
+            minVert.z = modelVects[i].z;
         }
     }
 
     centroid = (minVert + maxVert) / 2.0f;
     m_v3HalfWidth = (maxVert - minVert) / 2.0f;
-
+    visible = true;
 }
 
 
@@ -90,7 +90,9 @@ void BoundingObj::toggleVisible()
 
 void BoundingObj::draw()
 {
-    mpMesh->AddCubeToQueue(m2World, color, WIRE);
+    if(visible){
+       mpMesh->AddCubeToQueue(glm::translate(m2World, centroid), color, WIRE);
+    }
 }
 
 bool BoundingObj::isColliding(BoundingObj* const other)
