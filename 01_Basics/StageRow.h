@@ -14,6 +14,7 @@ public:
     void updateTiles();
     void updateMovers();
     void draw();
+    bool getLaneType();
 
 private:
     std::vector<Mover*> moversInRow;
