@@ -32,6 +32,7 @@ StageRow::StageRow(int id, int amount, bool obstacleLane, int type)
 StageRow::~StageRow()
 {
     for (Tile* tile : tilesInRow) {
+        std::cout << "deleting tiles" << std::endl;
         tile->~Tile();
     }
 }
@@ -43,7 +44,7 @@ void StageRow::setPosition(float setPos) {
     updateTiles(); 
     for (Mover* temp : moversInRow) {
         random = rand() % 2;
-        if (rowPlace < -5) { rowPlace = -5; } // The bug is here
+        if (rowPlace < -6) { rowPlace = -6; } // The bug is here
         if (random == 0) {
             temp->setPosition(vector3(3.f, 0.5f, rowPlace));
         }
@@ -68,6 +69,7 @@ void StageRow::updateTiles() {
 
 void StageRow::updateMovers() {
     for (Mover* temp : moversInRow) {
+        std::cout << _moveDirection.z << std::endl;
         temp->updatePosition(_moveDirection, true, percent);
     }
 }
@@ -86,4 +88,13 @@ void StageRow::draw() {
 
 bool StageRow::getLaneType() {
     return isObstacleLane;
+}
+
+float StageRow::getZ() {
+    float z = pos.z;
+    return z;
+}
+
+void StageRow::deleteTiles() {
+    tilesInRow.erase(tilesInRow.begin(), tilesInRow.begin() + 6);
 }

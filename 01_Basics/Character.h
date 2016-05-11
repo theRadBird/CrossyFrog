@@ -13,7 +13,7 @@ public:
     Character();
     ~Character();
 
-    vector3 Update(double rt);
+    void Update(double rt);
 
     vector3 position;
     float jumpDuration;
@@ -32,6 +32,9 @@ public:
     bool sidewaysLeft;
 
     float laneIncrement;
+
+protected:
+    MeshManagerSingleton* m_pMeshMngr;
 
 };
 

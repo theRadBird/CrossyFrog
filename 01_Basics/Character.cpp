@@ -4,6 +4,7 @@
 
 Character::Character()
 {
+    m_pMeshMngr = MeshManagerSingleton::GetInstance();
     position = vector3(0.f, 0.6f, 0.f);
     sidewaysDuration = 1.f;
     sidewaysRunTime = 0.f;
@@ -21,16 +22,16 @@ Character::~Character()
 {
 }
 
-vector3 Character::Update(double rt) {
+void Character::Update(double rt) {
     if (jumping) {
         vector3 playerJump = CharLerp(rt);
-        return playerJump;
+        m_pMeshMngr->SetModelMatrix(glm::translate(playerJump), "character");
     }
     if (sidewaysRight || sidewaysLeft) {
         vector3 playerMove = CharSideways(rt);
-        return playerMove;
+        m_pMeshMngr->SetModelMatrix(glm::translate(playerMove), "character");
     }
-    return position;
+    m_pMeshMngr->AddInstanceToRenderList("character");
 }
 
 vector3 Character::CharSideways(double rt) {

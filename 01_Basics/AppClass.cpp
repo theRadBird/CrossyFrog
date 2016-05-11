@@ -64,9 +64,9 @@ void AppClass::Update(void)
     /// Updates the stage
     worldStage->update(fTimeSpan);
 
-    vector3 playerMove = player->Update(fTimeSpan);
+    player->Update(fTimeSpan);
 
-    m_pMeshMngr->SetModelMatrix(glm::translate(playerMove), "character");
+    //m_pMeshMngr->SetModelMatrix(glm::translate(playerMove), "character");
 
     bObj_Man->GetBoundingObj(playerIndex)->setModelToWorld(m_pMeshMngr->GetModelMatrix("character"));
 
@@ -77,17 +77,17 @@ void AppClass::Update(void)
         bObj_Man->SetBoundingObjectColor(1, REGREEN);
     }
     //Adds all loaded instance to the render list
-    m_pMeshMngr->AddInstanceToRenderList("ALL");
+    //m_pMeshMngr->AddInstanceToRenderList("ALL");
 
     //Indicate the FPS
-    int nFPS = m_pSystem->GetFPS();
+    //int nFPS = m_pSystem->GetFPS();
     //print info into the console
     //printf("FPS: %d            \r", nFPS);//print the Frames per Second
     //Print info on the screen
-    m_pMeshMngr->PrintLine(m_pSystem->GetAppName(), REYELLOW);
+    //m_pMeshMngr->PrintLine(m_pSystem->GetAppName(), REYELLOW);
 
-    m_pMeshMngr->Print("FPS:");
-    m_pMeshMngr->Print(std::to_string(nFPS), RERED);
+    //m_pMeshMngr->Print("FPS:");
+    //m_pMeshMngr->Print(std::to_string(nFPS), RERED);
 }
 
 void AppClass::Display(void)

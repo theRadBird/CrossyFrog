@@ -58,6 +58,8 @@ void Stage::MoveBackward() {
 }
 
 void Stage::update(double dt) {
+    m_pMeshMngr->Print("Lanes Traversed:");
+    m_pMeshMngr->Print(std::to_string(maxMoved), RERED);
     vector3 lerpPos;
     if (moveBack || moveFor) {
 
@@ -69,7 +71,11 @@ void Stage::update(double dt) {
                     maxMoved++;
                 }
 
+                std::cout << "Row Delete: " << rowsInStage[0]->getZ() << std::endl;
+                
+                delete rowsInStage[0];
                 rowsInStage.erase(rowsInStage.begin());
+
                 stagePosTracker--;
                 if (rowsInStage[5]->getLaneType() == true) {
                     wasObstacle = true;

@@ -98,7 +98,7 @@ void Mover::updatePosition(vector3 moveDir_, bool _moveForward, float percent_) 
     moveForward = _moveForward;
     moveDir = moveDir_;
     otherPercent = percent_;
-    if (moveDir.z < oldMoveDir.z) {
+    if (moveDir.z < oldMoveDir.z && _moveForward) {
         moveDirZ = -1.f;
     }
     else { moveDirZ = 1.f; }
