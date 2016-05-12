@@ -34,6 +34,14 @@ void Character::Update(double rt) {
     m_pMeshMngr->AddInstanceToRenderList("character");
 }
 
+bool Character::IsStill() {
+    bool temp = true;
+    if (sidewaysLeft || sidewaysRight || jumping) {
+        temp = false;
+    }
+    return temp;
+}
+
 vector3 Character::CharSideways(double rt) {
     if (sidewaysRight && laneIncrement < 3.f) {
         vector3 sidewaysLerpPos = vector3(laneIncrement + 1.f, 0.6f, 0.f);

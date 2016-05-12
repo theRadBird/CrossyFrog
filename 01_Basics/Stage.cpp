@@ -2,10 +2,29 @@
 
 Stage::Stage() {
 	m_pMeshMngr = MeshManagerSingleton::GetInstance();
+    bObjMan = BoundingObjectManagerSingleton::GetInstance();
+    playerLane = 0;
+
     float slideTime = 0.0f;
 	for (int i = 0; i < 3; i++) {
-        rowsInStage.push_back(new StageRow(i, 3, false, 4));
-        rowsInStage.back()->setPosition(i);
+        
+        random = rand() % 2;
+        if (random == 0 && wasObstacle == false) { // Generates obstacle lane
+            wasObstacle = true;
+            temp = new StageRow(i, 3, wasObstacle, 4, 0);
+        }
+        else { // Generates mover lane
+            wasObstacle = false;
+            random = rand() % 3;
+            int moverID = bObjMan->AddBoundingObj(new BoundingObj(m_pMeshMngr->GetVertexList("mover")));
+
+            temp = new StageRow(i, 3, wasObstacle, random, moverID);
+            std::cout << "Random for mover type: " << random << std::endl;
+
+        }
+
+        rowsInStage.push_back(temp);
+        rowsInStage.back()->setPosition(static_cast<float>(-i + 1));
     }
     moveCounter = 0.f;
     maxMoved = 0;
@@ -14,17 +33,21 @@ Stage::Stage() {
 
 Stage::Stage(int rowCount)
 {
+    m_pMeshMngr = MeshManagerSingleton::GetInstance();
+    bObjMan = BoundingObjectManagerSingleton::GetInstance();
+    playerLane = 0;
     for (int i = 0; i < rowCount; i++) {
         random = rand() % 2;
         if (random == 0 && wasObstacle == false) { // Generates obstacle lane
             wasObstacle = true;
-            temp = new StageRow(i, rowCount, wasObstacle, 4);
+            temp = new StageRow(i, rowCount, wasObstacle, 4, 0);
         }
         else { // Generates mover lane
             wasObstacle = false; 
             random = rand() % 3;
+            int moverID = bObjMan->AddBoundingObj(new BoundingObj(m_pMeshMngr->GetVertexList("mover")));
 
-            temp = new StageRow(i, rowCount, wasObstacle, random);
+            temp = new StageRow(i, rowCount, wasObstacle, random, moverID);
             std::cout << "Random for mover type: " << random << std::endl;
 
         }
@@ -34,8 +57,7 @@ Stage::Stage(int rowCount)
         rowsInStage.push_back(temp);
         rowsInStage.back()->setPosition(static_cast<float>(-i+1));
     }
-	m_pMeshMngr = MeshManagerSingleton::GetInstance();
-	
+		
 }
 
 Stage::~Stage()
@@ -43,6 +65,33 @@ Stage::~Stage()
     for (StageRow* row : rowsInStage) {
         row->~StageRow();
     }
+}
+
+bool Stage::CanMoveF() {
+    bool temp = true;
+    StageRow* row = rowsInStage[2];
+    if (row->checkTile(playerLane)) {
+        temp = false;
+    }
+    return temp;
+}
+
+bool Stage::CanMoveL() {
+    bool temp = true;
+    StageRow* row = rowsInStage[1];
+    if (row->checkTile(playerLane-1)) {
+        temp = false;
+    }
+    return temp;
+}
+
+bool Stage::CanMoveR() {
+    bool temp = true;
+    StageRow* row = rowsInStage[1];
+    if (row->checkTile(playerLane+1)) {
+        temp = false;
+    }
+    return temp;
 }
 
 void Stage::MoveForward() {
@@ -84,12 +133,13 @@ void Stage::update(double dt) {
                 random = rand() % 2;
                 if (random == 0 && wasObstacle == false) { // Generates obstacle lane
                     wasObstacle = true;
-                    temp = new StageRow(7 + maxMoved, 7.f, wasObstacle, 4);
+                    temp = new StageRow(7 + maxMoved, 7.f, wasObstacle, 4, 0);
                 }
                 else { // Generates mover lane
                     wasObstacle = false;
                     random = rand() % 3;
-                    temp = new StageRow(7 + maxMoved, 7.f, wasObstacle, random);
+                    int moverID = bObjMan->AddBoundingObj(new BoundingObj(m_pMeshMngr->GetVertexList("mover")));
+                    temp = new StageRow(7 + maxMoved, 7.f, wasObstacle, random, moverID);
                 }
                 rowsInStage.push_back(temp);
                 

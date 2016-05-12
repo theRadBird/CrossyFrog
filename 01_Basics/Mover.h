@@ -1,13 +1,14 @@
 #pragma once
 #include "RE\ReEngAppClass.h"
 #include <SFML\Graphics.hpp>
+#include "BoundingObjectManagerSingleton.h"
 
 class Mover
 {
 public:
-    Mover();
+    Mover(int _myID);
     ~Mover();
-    Mover(vector3 pos, float spd);
+    Mover(vector3 pos, float spd, int _myID);
 
     void update(double dt);
     void updatePosition(vector3 moveDir_, bool moveForward, float percent);
@@ -35,6 +36,7 @@ private:
     vector3 lerpPos;
     vector3 moveDir;
     vector3 oldMoveDir = vector3(0.f, 0.f, 0.f);
+    BoundingObjectManagerSingleton* bObjMan;
     float moveDirZ;
     float zPos;
     float speed;
@@ -42,6 +44,7 @@ private:
     float traverseRunTime;
     float forwardRunTime;
     float otherPercent;
+    int myIndex;
     bool reverse = false;
     bool moveForward = false;
 };

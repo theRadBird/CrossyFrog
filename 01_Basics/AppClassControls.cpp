@@ -26,8 +26,10 @@ void AppClass::ProcessKeyboard(void)
         fSpeed *= 10.0f;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
         //m_pCameraMngr->MoveForward(fSpeed);
-        player->startJump();
-        worldStage->MoveForward();
+        if (worldStage->CanMoveF()) {
+            player->startJump();
+            worldStage->MoveForward();
+        }
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
@@ -38,12 +40,18 @@ void AppClass::ProcessKeyboard(void)
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
         //m_pCameraMngr->MoveSideways(-fSpeed);
-        player->startSidewaysL();
+        if (worldStage->CanMoveL() && player->IsStill()) {
+            player->startSidewaysL();
+            worldStage->playerLane--;
+        }
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && worldStage->CanMoveR() && player->IsStill()) {
         //m_pCameraMngr->MoveSideways(fSpeed);
-        player->startSidewaysR();
+        //if () {
+            player->startSidewaysR();
+            worldStage->playerLane += 1;
+       // }
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))

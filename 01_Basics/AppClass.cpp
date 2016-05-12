@@ -29,10 +29,10 @@ void AppClass::InitVariables(void)
     obst1->setPosition(vector3(0.f, 0.6f, -1.f));
     obst1->setRadius(0.75f);
 
+    playerIndex = bObj_Man->AddBoundingObj(new BoundingObj(m_pMeshMngr->GetVertexList("character")));
     worldStage = new Stage(7);
 
-    playerIndex = bObj_Man->AddBoundingObj(new BoundingObj(m_pMeshMngr->GetVertexList("character")));
-    obstIndex = bObj_Man->AddBoundingObj(new BoundingObj(m_pMeshMngr->GetVertexList("obstacle")));
+    //obstIndex = bObj_Man->AddBoundingObj(new BoundingObj(m_pMeshMngr->GetVertexList("obstacle")));
 
 
     m_pCameraMngr->SetPositionTargetAndView(vector3(3.f, 6.f, 4.f), vector3(0.f, 0.f, -2.f), vector3(0.f, 1.f, 0.f), -1);
@@ -70,7 +70,7 @@ void AppClass::Update(void)
 
     bObj_Man->GetBoundingObj(playerIndex)->setModelToWorld(m_pMeshMngr->GetModelMatrix("character"));
 
-// vector3 temp = mover1->getPosition();
+/* vector3 temp = mover1->getPosition();
     //bObj_Man->GetBoundingObj(obstIndex)->setModelToWorld(matrix4(IDENTITY_M4* vector4(temp.x, temp.y, temp.z,1.0f)));
     
     if(bObj_Man->CheckCollision(0, 1)){
@@ -87,7 +87,7 @@ void AppClass::Update(void)
     //m_pMeshMngr->PrintLine(m_pSystem->GetAppName(), REYELLOW);
 
     //m_pMeshMngr->Print("FPS:");
-    //m_pMeshMngr->Print(std::to_string(nFPS), RERED);
+    //m_pMeshMngr->Print(std::to_string(nFPS), RERED); */
 }
 
 void AppClass::Display(void)

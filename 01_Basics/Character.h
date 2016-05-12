@@ -21,7 +21,7 @@ public:
     float sidewaysDuration;
     float sidewaysRunTime;
     bool up;
-    
+    bool IsStill();
     vector3 CharLerp(double rt);
     vector3 CharSideways(double rt);
     void startJump();

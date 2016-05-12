@@ -41,6 +41,7 @@ public:
 
     // methods
     int AddBoundingObj(BoundingObj* obj);
+    void RemoveBoundingObj(int index);
     void SwitchVisibility(int index);
     int GetNumberBoundingObjects();
     void SetBoundingObjectColor(int index, vector3 color);

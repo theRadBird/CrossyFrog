@@ -40,3 +40,7 @@ void Tile::draw() {
 void Tile::setObstacleTile() {
     isObstacleTile = true;
 }
+
+bool Tile::isObst() {
+    return isObstacleTile;
+}

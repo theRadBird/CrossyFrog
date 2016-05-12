@@ -8,7 +8,6 @@ Date: 2015/09 (Last Modified on: 15/11)
 #include "Stage.h"
 #include "Character.h"
 #include "Obstacle.h"
-#include "BoundingObjectManagerSingleton.h"
 
 
 using namespace ReEng; //Using ReEng namespace to use all the classes in the dll

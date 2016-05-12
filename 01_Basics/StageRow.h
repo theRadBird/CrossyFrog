@@ -5,7 +5,7 @@
 class StageRow
 {
 public:
-    StageRow(int id, int amount, bool isObstacle, int type);
+    StageRow(int id, int amount, bool isObstacle, int type, int moverID);
     ~StageRow();
     
     void setPosition(float rowPos);
@@ -15,6 +15,7 @@ public:
     void updateMovers();
     void draw();
     bool getLaneType();
+    bool checkTile(int position);
     void deleteTiles();
     float getZ();
 

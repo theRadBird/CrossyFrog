@@ -14,7 +14,7 @@ public:
     void update(double dt);
     void draw();
     void setObstacleTile();
-
+    bool isObst();
 protected:
 	MeshManagerSingleton* m_pMeshMngr = nullptr;
 private:

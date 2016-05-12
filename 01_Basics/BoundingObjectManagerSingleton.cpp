@@ -10,6 +10,10 @@ int BoundingObjectManagerSingleton::AddBoundingObj(BoundingObj* obj) {
     return objCount - 1;
 }
 
+void BoundingObjectManagerSingleton::RemoveBoundingObj(int index) {
+    SwitchVisibility(index);
+}
+
 void BoundingObjectManagerSingleton::SwitchVisibility(int index) {
     boundingObjects[index]->toggleVisible();
 }

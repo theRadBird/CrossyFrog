@@ -1,6 +1,6 @@
 #include "StageRow.h"
 
-StageRow::StageRow(int id, int amount, bool obstacleLane, int type)
+StageRow::StageRow(int id, int amount, bool obstacleLane, int type, int moverID = 0)
 {
     isObstacleLane = obstacleLane;
     int offSet = (amount - 1) / 2;
@@ -16,7 +16,7 @@ StageRow::StageRow(int id, int amount, bool obstacleLane, int type)
         }
 
         if (type < 4 && !isObstacleLane && numMovers < 1) {
-            Mover* tempMover = new Mover();
+            Mover* tempMover = new Mover(moverID);
             random = rand() % 3 + 7.f;
             tempMover->setSpeed(random);
             moversInRow.push_back(tempMover);
@@ -34,6 +34,9 @@ StageRow::~StageRow()
     for (Tile* tile : tilesInRow) {
         tile->~Tile();
     }
+    if (!isObstacleLane) {
+        moversInRow[0]->~Mover();
+    }  
 }
 
 void StageRow::setPosition(float setPos) {
@@ -68,13 +71,13 @@ void StageRow::updateTiles() {
 }
 
 void StageRow::updateMovers() {
-    for (Mover* temp : moversInRow) {
+    for each(Mover* temp in moversInRow) {
         temp->updatePosition(_moveDirection, true, percent);
     }
 }
 
 void StageRow::update(double dt) {
-    for (Mover* temp : moversInRow) {
+    for each(Mover* temp in moversInRow) {
         temp->update(dt);
     }
 }
@@ -87,6 +90,16 @@ void StageRow::draw() {
 
 bool StageRow::getLaneType() {
     return isObstacleLane;
+}
+
+bool StageRow::checkTile(int pos) {
+    bool temp = false;
+    Tile* check = tilesInRow[pos+4];
+    std::cout << pos + 4 << std::endl;
+    if (check->isObst()) {
+        temp = true;
+    }
+    return temp;
 }
 
 float StageRow::getZ() {

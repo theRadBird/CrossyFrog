@@ -2,24 +2,29 @@
 
 
 
-Mover::Mover()
+Mover::Mover(int _myID)
 {
     position = vector3(10.f, 10.f, 10.f);
     speed = 3.f;
     traverseRunTime = 0.f;
     m_pMeshMngr = MeshManagerSingleton::GetInstance();
+    bObjMan = BoundingObjectManagerSingleton::GetInstance();
+    myIndex = _myID;
 }
 
 
 Mover::~Mover()
 {
+    bObjMan->RemoveBoundingObj(myIndex);
 }
 
-Mover::Mover(vector3 pos, float spd) {
+Mover::Mover(vector3 pos, float spd, int _myID) {
     position = pos;
     speed = spd;
     traverseRunTime = 0.f;
     m_pMeshMngr = MeshManagerSingleton::GetInstance();
+    bObjMan = BoundingObjectManagerSingleton::GetInstance();
+    myIndex = _myID;
 }
 
 void Mover::update(double dt) {
@@ -51,10 +56,13 @@ void Mover::update(double dt) {
             reverse = true;
             
             m_pMeshMngr->SetModelMatrix(glm::translate(position), "mover");
+            bObjMan->GetBoundingObj(myIndex)->setModelToWorld(glm::translate(position));
             m_pMeshMngr->AddInstanceToRenderList("mover");
+
         }
         else {
             m_pMeshMngr->SetModelMatrix(glm::translate(sidewaysPosChange), "mover");
+            bObjMan->GetBoundingObj(myIndex)->setModelToWorld(glm::translate(sidewaysPosChange));
             m_pMeshMngr->AddInstanceToRenderList("mover");
         }
     }
@@ -85,10 +93,12 @@ void Mover::update(double dt) {
             traverseRunTime = 0.f;
             reverse = false;
             m_pMeshMngr->SetModelMatrix(glm::translate(position), "mover");
+            bObjMan->GetBoundingObj(myIndex)->setModelToWorld(glm::translate(position));
             m_pMeshMngr->AddInstanceToRenderList("mover");
         }
         else {
             m_pMeshMngr->SetModelMatrix(glm::translate(sidewaysPosChange), "mover");
+            bObjMan->GetBoundingObj(myIndex)->setModelToWorld(glm::translate(sidewaysPosChange));
             m_pMeshMngr->AddInstanceToRenderList("mover");
         }
     }

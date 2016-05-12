@@ -1,5 +1,6 @@
 #pragma once
 #include "StageRow.h"
+#include "BoundingObjectManagerSingleton.h"
 
 class Stage
 {
@@ -7,13 +8,18 @@ public:
     Stage();
     Stage(int rowCount);
     ~Stage();
+    bool CanMoveF();
+    bool CanMoveL();
+    bool CanMoveR();
     void MoveForward();
     void MoveBackward();
     void update(double dt);
     void draw();
+    int playerLane; // Will track the players lane in the stage
 
 protected:
 	MeshManagerSingleton* m_pMeshMngr;
+    BoundingObjectManagerSingleton* bObjMan;
 
 private:
     std::vector<StageRow*> rowsInStage;
