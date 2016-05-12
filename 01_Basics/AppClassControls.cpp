@@ -32,8 +32,8 @@ void AppClass::ProcessKeyboard(void)
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
         //m_pCameraMngr->MoveForward(-fSpeed);
-        player->startJump();
-        worldStage->MoveBackward();
+        //player->startJump();
+        //worldStage->MoveBackward();
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {

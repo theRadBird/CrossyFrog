@@ -67,11 +67,10 @@ void Stage::update(double dt) {
         if (slideTime >= 1.0f) {
             if (moveFor) {
                 moveCounter++;
+
                 if (moveCounter > maxMoved) { // Maintains highest lane progress for player
                     maxMoved++;
                 }
-
-                std::cout << "Row Delete: " << rowsInStage[0]->getZ() << std::endl;
                 
                 delete rowsInStage[0];
                 rowsInStage.erase(rowsInStage.begin());
@@ -93,6 +92,7 @@ void Stage::update(double dt) {
                     temp = new StageRow(7 + maxMoved, 7.f, wasObstacle, random);
                 }
                 rowsInStage.push_back(temp);
+                
                 rowsInStage.back()->setPosition(stagePosTracker);
             }
             else moveCounter--;

@@ -4,7 +4,7 @@
 
 Mover::Mover()
 {
-    position = vector3(3.f, 0.5f, 0.f);
+    position = vector3(10.f, 10.f, 10.f);
     speed = 3.f;
     traverseRunTime = 0.f;
     m_pMeshMngr = MeshManagerSingleton::GetInstance();
@@ -32,7 +32,7 @@ void Mover::update(double dt) {
 
         if (moveForward) {
             forwardRunTime += static_cast<float>(dt);
-            vector3 forwardVec = vector3(0.f, 0.f, otherPercent * moveDirZ);
+            forwardVec = vector3(0.f, 0.f, otherPercent * moveDirZ);
             //std::cout << "forwardvec distance: " << forwardVec.z << std::endl;
             sidewaysPosChange += forwardVec;
 
@@ -97,15 +97,16 @@ void Mover::update(double dt) {
 void Mover::updatePosition(vector3 moveDir_, bool _moveForward, float percent_) {
     moveForward = _moveForward;
     moveDir = moveDir_;
+    //std::cout << moveDir.z << std::endl;
     otherPercent = percent_;
-    if (moveDir.z < oldMoveDir.z && _moveForward) {
-        moveDirZ = -1.f;
-    }
-    else { moveDirZ = 1.f; }
-    oldMoveDir = moveDir;
+    //if (moveDir.z < oldMoveDir.z) {
+    //    moveDirZ = -1.f;
+    //}
+    moveDirZ = 1.f;
 }
 
 void Mover::setPosition(vector3 pos) {
+    std::cout << "Z position in start of SetPosition (Mover): " << pos.z << std::endl;
     position = pos;
     zPos = position.z;
 }

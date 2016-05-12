@@ -32,19 +32,19 @@ StageRow::StageRow(int id, int amount, bool obstacleLane, int type)
 StageRow::~StageRow()
 {
     for (Tile* tile : tilesInRow) {
-        std::cout << "deleting tiles" << std::endl;
         tile->~Tile();
     }
 }
 
 void StageRow::setPosition(float setPos) {
+    std::cout << "Z Position in start of Set Position (StageRow): " << setPos << std::endl;
     rowPlace = setPos;
     pos = vector3(0.0f, 0.0f, setPos);
     position = glm::translate(pos);
     updateTiles(); 
     for (Mover* temp : moversInRow) {
         random = rand() % 2;
-        if (rowPlace < -6) { rowPlace = -6; } // The bug is here
+        if (rowPlace <= -6.f) { rowPlace = -6.f; } // The bug is here
         if (random == 0) {
             temp->setPosition(vector3(3.f, 0.5f, rowPlace));
         }
@@ -69,7 +69,6 @@ void StageRow::updateTiles() {
 
 void StageRow::updateMovers() {
     for (Mover* temp : moversInRow) {
-        std::cout << _moveDirection.z << std::endl;
         temp->updatePosition(_moveDirection, true, percent);
     }
 }
