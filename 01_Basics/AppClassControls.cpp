@@ -25,40 +25,27 @@ void AppClass::ProcessKeyboard(void)
     if (bModifier)
         fSpeed *= 10.0f;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-        //m_pCameraMngr->MoveForward(fSpeed);
-        if (worldStage->CanMoveF()) {
+            bObj_Man->beginCheckingForReals();
             player->startJump();
             worldStage->MoveForward();
-        }
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-        //m_pCameraMngr->MoveForward(-fSpeed);
-        //player->startJump();
-        //worldStage->MoveBackward();
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-        //m_pCameraMngr->MoveSideways(-fSpeed);
-        if (worldStage->CanMoveL() && player->IsStill()) {
+        bObj_Man->beginCheckingForReals();
             player->startSidewaysL();
-            worldStage->playerLane--;
-        }
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && worldStage->CanMoveR() && player->IsStill()) {
-        //m_pCameraMngr->MoveSideways(fSpeed);
-        //if () {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+        bObj_Man->beginCheckingForReals();
             player->startSidewaysR();
-            worldStage->playerLane += 1;
-       // }
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-       // m_pCameraMngr->MoveVertical(-fSpeed);
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-        //m_pCameraMngr->MoveVertical(fSpeed);
 #pragma endregion
 
 #pragma region Model Positioning

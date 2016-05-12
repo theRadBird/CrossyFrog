@@ -15,6 +15,13 @@ Character::Character()
     sidewaysRight = false;
     sidewaysLeft = false;
     laneIncrement = 0.f;
+
+    isDying = false;
+    gravity = 0.1f;
+    deadUpSpeed = 10.f;
+    dyingUpDuration = 1.f;
+    dyingUpRunTime = 0.f;
+
 }
 
 
@@ -22,14 +29,28 @@ Character::~Character()
 {
 }
 
+void Character::IsDying() {
+    isDying = true;
+}
+
 void Character::Update(double rt) {
-    if (jumping) {
+    if (jumping && isDying == false) {
         vector3 playerJump = CharLerp(rt);
         m_pMeshMngr->SetModelMatrix(glm::translate(playerJump), "character");
     }
-    if (sidewaysRight || sidewaysLeft) {
+    if (sidewaysRight || sidewaysLeft && isDying == false) {
         vector3 playerMove = CharSideways(rt);
         m_pMeshMngr->SetModelMatrix(glm::translate(playerMove), "character");
+    }
+    if (isDying) {
+        dyingUpRunTime += static_cast<float>(rt);
+        vector3 dyingUpVec = vector3(-10.f, deadUpSpeed, -7.f);
+
+        float percent = MapValue(dyingUpRunTime, 0.f, dyingUpDuration, 0.f, 1.f);
+        vector3 dyingUpLocation = glm::lerp(position, dyingUpVec, percent);
+
+        deadUpSpeed -= gravity;
+        m_pMeshMngr->SetModelMatrix(glm::translate(dyingUpLocation), "character");
     }
     m_pMeshMngr->AddInstanceToRenderList("character");
 }

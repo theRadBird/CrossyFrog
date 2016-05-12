@@ -48,6 +48,10 @@ public:
     void RenderBoundingObject(int index);
     void RenderAllBoundingObjects();
     bool CheckCollision(int objA, int objB);
+    bool collisionDetected = false;
+    bool collisionPass();
+    void beginCheckingForReals();
+    bool forRealsStartChecking = false;
 
     BoundingObj* GetBoundingObj(int index);
     void Update();

@@ -3,7 +3,7 @@
 BoundingObjectManagerSingleton* BoundingObjectManagerSingleton::instance = nullptr;
 
 int BoundingObjectManagerSingleton::AddBoundingObj(BoundingObj* obj) {
-   boundingObjects.push_back(obj);
+    boundingObjects.push_back(obj);
     objCount++;
     std::vector<int> lVector;
     collisions.push_back(lVector);
@@ -32,14 +32,24 @@ void BoundingObjectManagerSingleton::RenderBoundingObject(int index) {
 
 void BoundingObjectManagerSingleton::RenderAllBoundingObjects() {
     for (int i = 0; i < boundingObjects.size(); i++) {
-        if (collisions[i].size() > 0) {
-            boundingObjects[i]->setColor(RERED);
+        if (collisions[i].size() > 0 && forRealsStartChecking) {
+            //boundingObjects[i]->setColor(RERED);
+            std::cout << "collision detected" << std::endl;
+            collisionDetected = true;
         }
         else {
-            boundingObjects[i]->setColor(REGREEN);
+            //boundingObjects[i]->setColor(REGREEN);
         }
-        boundingObjects[i]->draw();
+        //boundingObjects[i]->draw();
     }
+}
+
+void BoundingObjectManagerSingleton::beginCheckingForReals() {
+    forRealsStartChecking = true;
+}
+
+bool BoundingObjectManagerSingleton::collisionPass() {
+    return collisionDetected;
 }
 
 bool BoundingObjectManagerSingleton::CheckCollision(int objA, int objB) {
@@ -63,15 +73,21 @@ void BoundingObjectManagerSingleton::Update() {
 
 void BoundingObjectManagerSingleton::CheckCollisions(void)
 {
-    for (uint nObjectA = 0; nObjectA < objCount - 1; nObjectA++)
-    {
-        for (uint nObjectB = nObjectA + 1; nObjectB < objCount; nObjectB++)
-        {
-            if (boundingObjects[nObjectA]->isColliding(boundingObjects[nObjectB]))
-            {
-                collisions[nObjectA].push_back(nObjectB);
-                collisions[nObjectB].push_back(nObjectA);
-            }
+    BoundingObj* a = boundingObjects[0];
+    for (uint i = 1; i < objCount; i++) {
+        if (a->isColliding(boundingObjects[i])) {
+            collisions[0].push_back(i);
         }
     }
+    //for (uint nObjectA = 0; nObjectA < objCount - 1; nObjectA++)
+    //{
+    //    for (uint nObjectB = nObjectA + 1; nObjectB < objCount; nObjectB++)
+    //    {
+    //        if (boundingObjects[nObjectA]->isColliding(boundingObjects[nObjectB]))
+    //        {
+    //            collisions[nObjectA].push_back(nObjectB);
+    //            collisions[nObjectB].push_back(nObjectA);
+    //        }
+    //    }
+    //}
 }

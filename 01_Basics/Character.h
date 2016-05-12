@@ -14,12 +14,20 @@ public:
     ~Character();
 
     void Update(double rt);
+    void IsDying();
 
     vector3 position;
     float jumpDuration;
     float jumpRunTime;
     float sidewaysDuration;
     float sidewaysRunTime;
+
+    float gravity;
+    float deadUpSpeed;
+    float dyingUpRunTime;
+    float dyingUpDuration;
+    bool isDying;
+
     bool up;
     bool IsStill();
     vector3 CharLerp(double rt);
